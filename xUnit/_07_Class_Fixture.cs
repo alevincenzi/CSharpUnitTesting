@@ -3,18 +3,13 @@ using Xunit;
 
 namespace CSharpUnitTesting.xUnit
 {
-    public class _06_Construct_Dispose : IDisposable
+    public class _07_Class_Fixture : IClassFixture<Counter>  
     {
         Counter testCounter;
 
-        public _06_Construct_Dispose()
+        public _07_Class_Fixture(Counter counter)
         {
-            this.testCounter = new Counter();
-        }
-
-        public void Dispose()
-        {
-            // If Needed ....
+            this.testCounter = counter;
         }
 
         [Fact]
