@@ -29,10 +29,13 @@ namespace CSharpUnitTesting.xUnit
             Console.WriteLine("I must terminate soon");
         }
 
-        [Trait("MyCategory", "ACategory")]
+        [Trait("Category", "Category1")]
         [Fact(Timeout=1000)]
         public void ThisTestHasACategory()
         {
+            // To run tests by category:
+            // dotnet test --filter "Category=Category1"
+
             Console.WriteLine("I must terminate soon");
         }
 
