@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CSharpUnitTesting.xUnit
 {
@@ -13,13 +14,17 @@ namespace CSharpUnitTesting.xUnit
     [Trait("Category", "Theory")]
     public class _02_Theory_InlineData
     {
+        private readonly ITestOutputHelper output;
+
+        public _02_Theory_InlineData(ITestOutputHelper output) => this.output = output;
+        
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
         public void ATheoryIsaTestWithAParameter(int param)
         {
-            Console.WriteLine($"Using parameter {param}");
+            output.WriteLine($"Using parameter {param}");
         }
 
         [Theory]
@@ -27,7 +32,7 @@ namespace CSharpUnitTesting.xUnit
         [InlineData(2, "Another parameter", typeof(string))]
         public void ATheoryIsaTestWithManyParameters(int param1, string param2, Type param3)
         {
-            Console.WriteLine($"Using parameters {param1}, {param2} and {param3}");
+            output.WriteLine($"Using parameters {param1}, {param2} and {param3}");
         }
 
         [Theory]
@@ -35,21 +40,21 @@ namespace CSharpUnitTesting.xUnit
         [InlineData("another input string")]
         public void Using_Strings(string param)
         {
-            Console.WriteLine($"Using string {param}");
+            output.WriteLine($"Using string {param}");
         }
 
         [Theory]
         [InlineData(new int[] {1, 2, 3})]
         public void Using_ArrayOfConsts(int[] param)
         {
-            Console.WriteLine($"Using array of consts {param}");
+            output.WriteLine($"Using array of consts {param}");
         }
 
         [Theory]
         [InlineData(typeof(MyInlineData))]
         public void Using_Types(Type param)
         {
-            Console.WriteLine($"Using type {param}");
+            output.WriteLine($"Using type {param}");
         }
     }
 }

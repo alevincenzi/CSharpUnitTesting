@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Xunit;
+using Xunit.Abstractions;
 using Xunit.Sdk;
 
 namespace CSharpUnitTesting.xUnit
@@ -33,11 +34,15 @@ namespace CSharpUnitTesting.xUnit
     [Trait("Category", "Theory")]
     public class _05_Theory_CustomDataAttribute
     {
+        private readonly ITestOutputHelper output;
+
+        public _05_Theory_CustomDataAttribute(ITestOutputHelper output) => this.output = output;
+
         [Theory]
         [CustomData(2)]
         public void UsingCustomDataAttribute(MyMemberData param)
         {
-            Console.WriteLine($"Using parameter {param.aProperty}");
+            output.WriteLine($"Using parameter {param.aProperty}");
         }
     }
 }

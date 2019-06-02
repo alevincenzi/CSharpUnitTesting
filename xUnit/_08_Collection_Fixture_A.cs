@@ -1,5 +1,5 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
+using Xunit.Abstractions;
 
 namespace CSharpUnitTesting.xUnit
 {
@@ -8,29 +8,32 @@ namespace CSharpUnitTesting.xUnit
     [Collection("Counter Collection")]
     public class _08_Collection_Fixture_A
     {
+        private readonly ITestOutputHelper output;
+
         Counter testCounter;
 
-        public _08_Collection_Fixture_A(Counter counter)
+        public _08_Collection_Fixture_A(ITestOutputHelper output, Counter counter)
         {
+            this.output = output;
             this.testCounter = counter;
         }
 
         [Fact]
         public void FirstTest()
         {
-            Console.WriteLine($"First test is running with {testCounter.Value}");
+            output.WriteLine($"First test is running with {testCounter.Value}");
         }
 
         [Fact]
         public void SecondTest()
         {
-            Console.WriteLine($"Second test is running with {testCounter.Value}");
+            output.WriteLine($"Second test is running with {testCounter.Value}");
         }
 
         [Fact]
         public void ThirdTest()
         {
-            Console.WriteLine($"Third test is running with {testCounter.Value}");
+            output.WriteLine($"Third test is running with {testCounter.Value}");
         }
     }
 }

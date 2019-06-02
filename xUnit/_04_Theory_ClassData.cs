@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CSharpUnitTesting.xUnit
 {
@@ -20,12 +20,15 @@ namespace CSharpUnitTesting.xUnit
     [Trait("Category", "Theory")]
     public class _04_Theory_ClassData
     {
+        private readonly ITestOutputHelper output;
+
+        public _04_Theory_ClassData(ITestOutputHelper output) => this.output = output;
 
         [Theory]
         [ClassData(typeof(MyClassData))]
         public void UsingClassData(MyMemberData param)
         {
-            Console.WriteLine($"Using parameter {param.aProperty}");
+            output.WriteLine($"Using parameter {param.aProperty}");
         }
     }
 }

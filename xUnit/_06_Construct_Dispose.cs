@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CSharpUnitTesting.xUnit
 {
@@ -7,10 +8,13 @@ namespace CSharpUnitTesting.xUnit
     [Trait("SharingLevel", "Test")]
     public class _06_Construct_Dispose : IDisposable
     {
+        private readonly ITestOutputHelper output;
+
         Counter testCounter;
 
-        public _06_Construct_Dispose()
+        public _06_Construct_Dispose(ITestOutputHelper output)
         {
+            this.output = output;
             this.testCounter = new Counter();
         }
 
@@ -22,19 +26,19 @@ namespace CSharpUnitTesting.xUnit
         [Fact]
         public void FirstTest()
         {
-            Console.WriteLine($"First test is running with {testCounter.Value}");
+            output.WriteLine($"First test is running with {testCounter.Value}");
         }
 
         [Fact]
         public void SecondTest()
         {
-            Console.WriteLine($"Second test is running with {testCounter.Value}");
+            output.WriteLine($"Second test is running with {testCounter.Value}");
         }
 
         [Fact]
         public void ThirdTest()
         {
-            Console.WriteLine($"Third test is running with {testCounter.Value}");
+            output.WriteLine($"Third test is running with {testCounter.Value}");
         }
     }
 }

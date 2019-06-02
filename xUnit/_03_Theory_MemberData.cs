@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CSharpUnitTesting.xUnit
 {
@@ -36,12 +36,15 @@ namespace CSharpUnitTesting.xUnit
     [Trait("Category", "Theory")]
     public class _03_Theory_MemberData
     {
+        private readonly ITestOutputHelper output;
+
+        public _03_Theory_MemberData(ITestOutputHelper output) => this.output = output;
+
         public static IEnumerable<object[]> StaticTestClassMember()
         {
             yield return new object[] { new MyMemberData("Data_20") };
             yield return new object[] { new MyMemberData("Data_21") };
             yield return new object[] { new MyMemberData("Data_22") };
-
         }
 
         public static IEnumerable<object[]> StaticTestClassMemberWithAParameter(int qty)
@@ -71,35 +74,35 @@ namespace CSharpUnitTesting.xUnit
         [MemberData(nameof(MyMemberData.StaticMember), MemberType=typeof(MyMemberData))]
         public void Using_StaticMember_ExternalClass(MyMemberData param)
         {
-            Console.WriteLine($"Using parameter {param.aProperty}");
+            output.WriteLine($"Using parameter {param.aProperty}");
         }
 
         [Theory]
         [MemberData(nameof(MyMemberData.StaticProperty), MemberType=typeof(MyMemberData))]
         public void Using_StaticProperty_ExternalClass(MyMemberData param1, MyMemberData param2, MyMemberData param3)
         {
-            Console.WriteLine($"Using parameters {param1.aProperty}, {param2.aProperty} and {param3.aProperty}");
+            output.WriteLine($"Using parameters {param1.aProperty}, {param2.aProperty} and {param3.aProperty}");
         }
 
         [Theory]
         [MemberData(nameof(StaticTestClassMember))]
         public void Using_StaticMember_TestClass(MyMemberData param)
         {
-            Console.WriteLine($"Using parameter {param.aProperty}");
+            output.WriteLine($"Using parameter {param.aProperty}");
         }
 
         [Theory]
         [MemberData(nameof(StaticTestClassMemberWithAParameter), 1)]
         public void Using_StaticMember_TestClass_WithAParameter(MyMemberData param)
         {
-            Console.WriteLine($"Using parameter {param.aProperty}");
+            output.WriteLine($"Using parameter {param.aProperty}");
         }
 
         [Theory]
         [MemberData(nameof(StaticTestClassProperty))]
         public void Using_StaticProperty_TestClass(MyMemberData param1, MyMemberData param2, MyMemberData param3)
         {
-            Console.WriteLine($"Using parameters {param1.aProperty}, {param2.aProperty} and {param3.aProperty}");
+            output.WriteLine($"Using parameters {param1.aProperty}, {param2.aProperty} and {param3.aProperty}");
         }
     }
 }
