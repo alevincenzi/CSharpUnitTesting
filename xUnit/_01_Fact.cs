@@ -3,6 +3,7 @@ using Xunit;
 
 namespace CSharpUnitTesting.xUnit
 {
+    [Trait("Category", "Fact")]
     public class _01_Fact
     {
         [Fact]
@@ -29,15 +30,13 @@ namespace CSharpUnitTesting.xUnit
             Console.WriteLine("I must terminate soon");
         }
 
-        [Trait("Category", "Category1")]
+        [Trait("Category", "Timeout")]
         [Fact(Timeout=1000)]
         public void ThisTestHasACategory()
         {
             // To run tests by category:
-            // dotnet test --filter "Category=Category1"
-
+            // dotnet test --filter "Category=Timeout"
             Console.WriteLine("I must terminate soon");
         }
-
     }
 }

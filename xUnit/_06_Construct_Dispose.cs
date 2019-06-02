@@ -3,6 +3,8 @@ using Xunit;
 
 namespace CSharpUnitTesting.xUnit
 {
+    [Trait("Category", "SharingSetup")]
+    [Trait("SharingLevel", "Test")]
     public class _06_Construct_Dispose : IDisposable
     {
         Counter testCounter;

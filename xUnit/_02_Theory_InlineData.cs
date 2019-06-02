@@ -10,6 +10,7 @@ namespace CSharpUnitTesting.xUnit
         public MyInlineData(string aValue) => aProperty = aValue;
     }
 
+    [Trait("Category", "Theory")]
     public class _02_Theory_InlineData
     {
         [Theory]

@@ -17,6 +17,7 @@ namespace CSharpUnitTesting.xUnit
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
+    [Trait("Category", "Theory")]
     public class _04_Theory_ClassData
     {
 

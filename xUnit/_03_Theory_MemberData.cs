@@ -33,6 +33,7 @@ namespace CSharpUnitTesting.xUnit
         }
     }
 
+    [Trait("Category", "Theory")]
     public class _03_Theory_MemberData
     {
         public static IEnumerable<object[]> StaticTestClassMember()

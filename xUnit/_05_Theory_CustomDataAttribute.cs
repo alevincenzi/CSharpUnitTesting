@@ -30,6 +30,7 @@ namespace CSharpUnitTesting.xUnit
         }
     }
 
+    [Trait("Category", "Theory")]
     public class _05_Theory_CustomDataAttribute
     {
         [Theory]

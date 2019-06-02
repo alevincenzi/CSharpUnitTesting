@@ -3,6 +3,8 @@ using Xunit;
 
 namespace CSharpUnitTesting.xUnit
 {
+    [Trait("Category", "SharingSetup")]
+    [Trait("SharingLevel", "Class")]
     public class _07_Class_Fixture : IClassFixture<Counter>  
     {
         Counter testCounter;

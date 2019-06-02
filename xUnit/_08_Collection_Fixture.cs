@@ -6,7 +6,8 @@ namespace CSharpUnitTesting.xUnit
     [CollectionDefinition("Counter Collection", DisableParallelization = true)]
     public class CounterCollection : ICollectionFixture<Counter> { }
 
-    [Trait("Category", "Collection")]
+    [Trait("Category", "SharingSetup")]
+    [Trait("SharingLevel", "Collection")]
     [Collection("Counter Collection")]
     public class _08_Collection_Fixture_A
     {
@@ -36,8 +37,8 @@ namespace CSharpUnitTesting.xUnit
         }
     }
 
-    [Trait("Category", "Collection")]
-    [Collection("Counter Collection")]
+    [Trait("Category", "SharingSetup")]
+    [Trait("SharingLevel", "Collection")]
     public class _08_Collection_Fixture_B
     {
         Counter testCounter;
