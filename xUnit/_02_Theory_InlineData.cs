@@ -56,5 +56,12 @@ namespace CSharpUnitTesting.xUnit
         {
             output.WriteLine($"Using type {param}");
         }
+
+        [Theory]
+        [InlineData(null)]
+        public void Using_Null(Type param)
+        {
+            output.WriteLine($"Using null {param}");
+        }
     }
 }
