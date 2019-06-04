@@ -2,19 +2,12 @@
 
 namespace CSharpUnitTesting.xAssert
 {
-    class NullsClass
-    {
-        private readonly int _value;
-
-        public NullsClass(int value) => _value = value;
-    }
-
     public class Nulls
     {
         [Fact]
         public void Null()
         {
-            NullsClass parameter = null;
+            AClass parameter = null;
 
             Assert.Null(parameter);
         }
@@ -22,7 +15,7 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void NotNull()
         {
-            NullsClass parameter = new NullsClass(1);
+            AClass parameter = new AClass(1);
 
             Assert.NotNull(parameter);
         }
