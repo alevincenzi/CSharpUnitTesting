@@ -11,7 +11,7 @@ namespace CSharpUnitTesting.xAssert
         public AClass(int value) => _value = value;
     }
 
-    class AClassComparer : IEqualityComparer<AClass>
+    class AClassEqualityComparer : IEqualityComparer<AClass>
     {
         public bool Equals(AClass x, AClass y)
         {
@@ -21,6 +21,14 @@ namespace CSharpUnitTesting.xAssert
         public int GetHashCode(AClass obj)
         {
             return obj.GetHashCode();
+        }
+    }
+
+    class AClassComparer : IComparer<AClass>
+    {
+        public int Compare(AClass x, AClass y)
+        {
+            return x.Value.CompareTo(y.Value);
         }
     }
 }

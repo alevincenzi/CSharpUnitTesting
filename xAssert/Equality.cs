@@ -94,12 +94,12 @@ namespace CSharpUnitTesting.xAssert
         }
 
         [Fact]
-        public void Equal_Type_Custom_WithCpmparer()
+        public void Equal_Type_Custom_WithEqualityComparer()
         {
             var ref1 = new AClass(1);
             var ref2 = new AClass(1);
 
-            Assert.Equal<AClass>(ref1, ref2, new AClassComparer());
+            Assert.Equal<AClass>(ref1, ref2, new AClassEqualityComparer());
         }
 
         [Fact]
@@ -125,12 +125,12 @@ namespace CSharpUnitTesting.xAssert
         }
 
         [Fact]
-        public void NotEqual_Type_Custom_WithCpmparer()
+        public void NotEqual_Type_Custom_WithEqualityComparer()
         {
             var ref1 = new AClass(1);
             var ref2 = new AClass(2);
 
-            Assert.NotEqual<AClass>(ref1, ref2, new AClassComparer());
+            Assert.NotEqual<AClass>(ref1, ref2, new AClassEqualityComparer());
         }
 
         [Fact]
