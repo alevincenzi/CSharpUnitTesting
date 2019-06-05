@@ -63,13 +63,10 @@ namespace CSharpUnitTesting.xAssert
         }
 
         [Fact]
-        public void IsNotType_ThrowsException_WhenReferenceIsNull()
+        public void IsNotType_DoesNotThrowException_WhenReferenceIsNull()
         {
             string reference = null;
-
-            Assert.Throws<IsTypeException>(
-                () => Assert.IsNotType<string>(reference)
-            );
+            Assert.IsNotType<string>(reference);
         }
 
         [Fact]
