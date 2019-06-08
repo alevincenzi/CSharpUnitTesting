@@ -1,22 +1,23 @@
-using Xunit;
+﻿using Xunit;
 using Xunit.Sdk;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class Event
+    public class Events
     {
         [Fact]
         public void Raises()
         {
             var sut = new AClassWithEvents();
 
-            var ex = Assert.Raises<BaseEventArgs>(
+            var ev = Assert.Raises<BaseEventArgs>(
                 handler => sut.AnEvent += handler,
                 handler => sut.AnEvent -= handler,
                 () => sut.Raise(new BaseEventArgs(42)));
 
-            Assert.Same(sut, ex.Sender);
-            Assert.Equal<int>(42, ex.Arguments.IValue);
+            Assert.Same(sut, ev.Sender);
+            Assert.IsType<BaseEventArgs>(ev.Arguments);
+            Assert.Equal<int>(42, ev.Arguments.IValue);
         }
 
         [Fact]
