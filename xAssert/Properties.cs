@@ -1,9 +1,9 @@
-using Xunit;
+﻿using Xunit;
 using Xunit.Sdk;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class Property
+    public class Properties
     {
         [Fact]
         public void PropertyChanged()

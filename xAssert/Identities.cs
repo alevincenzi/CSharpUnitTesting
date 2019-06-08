@@ -1,8 +1,8 @@
-using Xunit;
+﻿using Xunit;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class Identity
+    public class Identities
     {
         [Fact]
         public void Same()

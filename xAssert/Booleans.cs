@@ -1,9 +1,9 @@
-using Xunit;
+﻿using Xunit;
 using Xunit.Sdk;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class Boolean
+    public class Booleans
     {
         [Fact]
         public void False()

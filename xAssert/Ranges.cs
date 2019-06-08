@@ -1,8 +1,8 @@
-using Xunit;
+﻿using Xunit;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class Range
+    public class Ranges
     {
         [Fact]
         public void InRange_Type_Base()

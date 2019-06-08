@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using Xunit;
 using Xunit.Sdk;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class String
+    public class Strings
     {
         [Theory]
         [InlineData("",    "")]

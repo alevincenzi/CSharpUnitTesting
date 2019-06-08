@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using Xunit;
 using Xunit.Sdk;
 
 namespace CSharpUnitTesting.xAssert
 {
-    public class Equality
+    public class Equalities
     {
         // Warning xUnit2004
         // --> Use Assert.True(expression)
