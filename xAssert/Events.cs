@@ -17,7 +17,7 @@ namespace CSharpUnitTesting.xAssert
 
             Assert.Same(sut, ev.Sender);
             Assert.IsType<BaseEventArgs>(ev.Arguments);
-            Assert.Equal<int>(42, ev.Arguments.IValue);
+            Assert.Equal(42, ev.Arguments.IValue);
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace CSharpUnitTesting.xAssert
 
             Assert.Same(sut, ev.Sender);
             Assert.IsType<BaseEventArgs>(ev.Arguments);
-            Assert.Equal<int>(42, ev.Arguments.IValue);
+            Assert.Equal(42, ev.Arguments.IValue);
         }
 
         [Fact]
@@ -86,8 +86,8 @@ namespace CSharpUnitTesting.xAssert
 
             Assert.Same(sut, ev.Sender);
             Assert.IsType<DerivedEventArgs>(ev.Arguments);
-            Assert.Equal<int> (42,   ((ev.Arguments) as DerivedEventArgs).IValue);
-            Assert.Equal      ("42", ((ev.Arguments) as DerivedEventArgs).SValue);
+            Assert.Equal(42,   ((ev.Arguments) as DerivedEventArgs).IValue);
+            Assert.Equal("42", ((ev.Arguments) as DerivedEventArgs).SValue);
         }
     }
 }
