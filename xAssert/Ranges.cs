@@ -4,23 +4,37 @@ namespace CSharpUnitTesting.xAssert
 {
     public class Ranges
     {
-        [Fact]
-        public void InRange_Type_Base()
+        [Theory]
+        [InlineData(42, 42,           42)]
+        [InlineData(42, int.MinValue, 42)]
+        [InlineData(42, 42,           int.MaxValue)]
+        [InlineData(42, int.MinValue, int.MaxValue)]
+        public void InRange_Int(int actual, int low, int high)
         {
-            Assert.InRange<int>(42, 42, 42);
-            Assert.InRange<int>(42, int.MinValue, 42);
-            Assert.InRange<int>(42, 42, int.MaxValue);
-            Assert.InRange<int>(42, int.MinValue, int.MaxValue);
+            Assert.InRange(actual, low, high);
+            Assert.InRange<int>(actual, low, high);
+        }
 
-            Assert.InRange<char>('e', 'e', 'e');
-            Assert.InRange<char>('e', 'a', 'e');
-            Assert.InRange<char>('e', 'e', 'z');
-            Assert.InRange<char>('e', 'a', 'z');
+        [Theory]
+        [InlineData('e', 'e', 'e')]
+        [InlineData('e', 'a', 'e')]
+        [InlineData('e', 'e', 'z')]
+        [InlineData('e', 'a', 'z')]
+        public void InRange_Char(char actual, char low, char high)
+        {
+            Assert.InRange(actual, low, high);
+            Assert.InRange<char>(actual, low, high);
+        }
 
-            Assert.InRange<string>("eee", "eee", "eee");
-            Assert.InRange<string>("eee", "aaa", "eee");
-            Assert.InRange<string>("eee", "eee", "zzz");
-            Assert.InRange<string>("eee", "aaa", "zzz");
+        [Theory]
+        [InlineData("eee", "eee", "eee")]
+        [InlineData("eee", "aaa", "eee")]
+        [InlineData("eee", "eee", "zzz")]
+        [InlineData("eee", "aaa", "zzz")]
+        public void InRange_String(string actual, string low, string high)
+        {
+            Assert.InRange(actual, low, high);
+            Assert.InRange<string>(actual, low, high);
         }
 
         [Fact]
@@ -30,6 +44,7 @@ namespace CSharpUnitTesting.xAssert
             var ref2 = new AClassWithComparer(2);
             var ref3 = new AClassWithComparer(3);
 
+            Assert.InRange(ref2, ref1, ref3);
             Assert.InRange<AClassWithComparer>(ref2, ref1, ref3);
         }
 
@@ -40,14 +55,20 @@ namespace CSharpUnitTesting.xAssert
             var ref2 = new AClass(2);
             var ref3 = new AClass(3);
 
+            Assert.InRange(ref2, ref1, ref3, new AClassComparer());
             Assert.InRange<AClass>(ref2, ref1, ref3, new AClassComparer());
         }
 
         [Fact]
         public void NotInRange_Type_Base()
         {
+            Assert.NotInRange(42, 43, 45);
             Assert.NotInRange<int>(42, 43, 45);
+
+            Assert.NotInRange('a', 'e', 'z');
             Assert.NotInRange<char>('a', 'e', 'z');
+
+            Assert.NotInRange("aaa", "eee", "zzz");
             Assert.NotInRange<string>("aaa", "eee", "zzz");
         }
 
@@ -58,6 +79,7 @@ namespace CSharpUnitTesting.xAssert
             var ref2 = new AClassWithComparer(2);
             var ref3 = new AClassWithComparer(3);
 
+            Assert.NotInRange(ref1, ref2, ref3);
             Assert.NotInRange<AClassWithComparer>(ref1, ref2, ref3);
         }
 
@@ -68,6 +90,7 @@ namespace CSharpUnitTesting.xAssert
             var ref2 = new AClass(2);
             var ref3 = new AClass(3);
 
+            Assert.NotInRange(ref1, ref2, ref3, new AClassComparer());
             Assert.NotInRange<AClass>(ref1, ref2, ref3, new AClassComparer());
         }
     }

@@ -32,6 +32,20 @@ namespace CSharpUnitTesting.xAssert
         }
 
         [Fact]
+        public void Subset_WithType()
+        {
+            Assert.Subset<string>(_abc, _ab);
+            Assert.ProperSubset<string>(_abc, _ab);
+
+            Assert.Throws<SupersetException>(
+                () => Assert.Superset<string>(_abc, _ab)
+            );
+            Assert.Throws<ProperSupersetException>(
+                () => Assert.ProperSuperset<string>(_abc, _ab)
+            );
+        }
+
+        [Fact]
         public void SameSet()
         {
             Assert.Subset(_abc, _abc);
@@ -48,6 +62,22 @@ namespace CSharpUnitTesting.xAssert
         }
 
         [Fact]
+        public void SameSet_WithType()
+        {
+            Assert.Subset<string>(_abc, _abc);
+
+            Assert.Throws<ProperSubsetException>(
+                () => Assert.ProperSubset<string>(_abc, _abc)
+            );
+
+            Assert.Superset<string>(_abc, _abc);
+
+            Assert.Throws<ProperSupersetException>(
+                () => Assert.ProperSuperset<string>(_abc, _abc)
+            );
+        }
+
+        [Fact]
         public void Superset()
         {
             Assert.Superset(_abc, _abcd);
@@ -60,5 +90,20 @@ namespace CSharpUnitTesting.xAssert
                 () => Assert.ProperSubset(_abc, _abcd)
             );
         }
+
+        [Fact]
+        public void Superset_WithType()
+        {
+            Assert.Superset<string>(_abc, _abcd);
+            Assert.ProperSuperset<string>(_abc, _abcd);
+
+            Assert.Throws<SubsetException>(
+                () => Assert.Subset<string>(_abc, _abcd)
+            );
+            Assert.Throws<ProperSubsetException>(
+                () => Assert.ProperSubset<string>(_abc, _abcd)
+            );
+        }
+
     }
 }

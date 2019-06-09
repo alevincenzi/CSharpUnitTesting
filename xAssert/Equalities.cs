@@ -70,6 +70,7 @@ namespace CSharpUnitTesting.xAssert
         public void Equal_SameReference()
         {
             var reference = new AClass(1);
+            Assert.Equal(reference, reference);
             Assert.Equal<AClass>(reference, reference);
         }
 
@@ -77,6 +78,9 @@ namespace CSharpUnitTesting.xAssert
         public void NotEqual_ThrowsException_WhenSameReference()
         {
             var reference = new AClass(1);
+            Assert.Throws<NotEqualException>(
+                () => Assert.NotEqual(reference, reference)
+            );
             Assert.Throws<NotEqualException>(
                 () => Assert.NotEqual<AClass>(reference, reference)
             );
@@ -86,6 +90,9 @@ namespace CSharpUnitTesting.xAssert
         public void Equal_ClassWithoutEqual_ThrowsException()
         {
             Assert.Throws<EqualException>(
+                () => Assert.Equal(new AClass(1), new AClass(1))
+            );
+            Assert.Throws<EqualException>(
                 () => Assert.Equal<AClass>(new AClass(1), new AClass(1))
             );
         }
@@ -93,12 +100,16 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void NotEqual_ClassWithoutEqual()
         {
+            Assert.NotEqual(new AClass(1), new AClass(1));
             Assert.NotEqual<AClass>(new AClass(1), new AClass(1));
         }
 
         [Fact]
         public void Equal_ClassWithEqual()
         {
+            Assert.Equal(
+                new AClassWithEquals(1), new AClassWithEquals(1)
+            );
             Assert.Equal<AClassWithEquals>(
                 new AClassWithEquals(1), new AClassWithEquals(1)
             );
@@ -107,6 +118,9 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void NotEqual_ClassWithEqual()
         {
+            Assert.NotEqual(
+                new AClassWithEquals(1), new AClassWithEquals(2)
+            );
             Assert.NotEqual<AClassWithEquals>(
                 new AClassWithEquals(1), new AClassWithEquals(2)
             );
@@ -115,6 +129,11 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void Equal_EqualityComparer()
         {
+            Assert.Equal(
+                new AClass(1),
+                new AClass(1),
+                new AClassEqualityComparer()
+            );
             Assert.Equal<AClass>(
                 new AClass(1),
                 new AClass(1),
@@ -125,6 +144,11 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void NotEqual_EqualityComparer()
         {
+            Assert.NotEqual(
+                new AClass(1),
+                new AClass(2),
+                new AClassEqualityComparer()
+            );
             Assert.NotEqual<AClass>(
                 new AClass(1),
                 new AClass(2),
@@ -136,18 +160,21 @@ namespace CSharpUnitTesting.xAssert
         public void Equal_Struct_SameReference()
         {
             AStruct reference = new AStruct(1, 2);
+            Assert.Equal(reference, reference);
             Assert.Equal<AStruct>(reference, reference);
         }
 
         [Fact]
         public void Equal_Struct_SameFields()
         {
+            Assert.Equal(new AStruct(1, 2), new AStruct(1, 2));
             Assert.Equal<AStruct>(new AStruct(1, 2), new AStruct(1, 2));
         }
 
         [Fact]
         public void NotEqual_Struct_DifferentFields()
         {
+            Assert.NotEqual(new AStruct(1, 2), new AStruct(1, 3));
             Assert.NotEqual<AStruct>(new AStruct(1, 2), new AStruct(1, 3));
         }
     }

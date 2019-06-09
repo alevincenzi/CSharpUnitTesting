@@ -10,10 +10,17 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void All()
         {
+            Assert.All(new int[] {0, 2, 4, 6, 8}, x => Assert.Equal(0, x % 2));
+            Assert.All(new List<int>() {0, 1, 2, 3, 4}, x => Assert.True(x < 5));
+            Assert.All("xxx", x => Assert.Equal('x', x));
+        }
+
+
+        [Fact]
+        public void All_WithType()
+        {
             Assert.All<int>(new int[] {0, 2, 4, 6, 8}, x => Assert.Equal(0, x % 2));
-
             Assert.All<int>(new List<int>() {0, 1, 2, 3, 4}, x => Assert.True(x < 5));
-
             Assert.All<char>("xxx", x => Assert.Equal('x', x));
         }
 
@@ -21,7 +28,7 @@ namespace CSharpUnitTesting.xAssert
         public void All_ThrowsException_WhenAtLeastOneFails()
         {
             var ex = Assert.Throws<AllException>(
-                () => Assert.All<int>(new int[] {0, 2, 5, 6, 8}, x => Assert.Equal(0, x % 2))
+                () => Assert.All(new int[] {0, 2, 5, 6, 8}, x => Assert.Equal(0, x % 2))
             );
 
             Assert.Equal(1, ex.Failures.Count);
@@ -37,7 +44,7 @@ namespace CSharpUnitTesting.xAssert
             collection.Add(new AClass(1));
 
             var ex = Assert.Throws<AllException>(
-                () => Assert.All<AClass>(collection, x => Assert.Equal(1, x.Value))
+                () => Assert.All(collection, x => Assert.Equal(1, x.Value))
             );
 
             Assert.Equal(1, ex.Failures.Count);
@@ -47,11 +54,30 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void Single()
         {
-            Assert.Equal(42, Assert.Single(new int[1] { 42 }));
-            Assert.Equal(42, Assert.Single(new List<int>() { 42 }));
-            Assert.Equal('x', Assert.Single("x"));
+            Assert.Single(new int[1] { 42 });
+            Assert.Single(new List<int>() { 42 });
+            Assert.Single("x");
         }
-        
+
+        [Fact]
+        public void Single_WithType()
+        {
+            Assert.Single<int>(new int[1] { 42 });
+            Assert.Single<int>(new List<int>() { 42 });
+            Assert.Single<char>("x");
+        }
+
+        [Fact]
+        public void Single_ReturnedValue()
+        {
+            Assert.Equal(42,
+                Assert.Single(new int[1] { 42 }));
+            Assert.Equal(42,
+                Assert.Single(new List<int>() { 42 }));
+            Assert.Equal('x',
+                Assert.Single("x"));
+        }
+
         [Fact]
         public void Single_ThrowsException_WhenEmptyOrHasMoreThanOne()
         {
@@ -84,8 +110,10 @@ namespace CSharpUnitTesting.xAssert
         [Fact]
         public void Single_WithPredicate()
         {
-            Assert.Equal(5, Assert.Single(new int[] {0, 2, 5, 6, 8}, x => x % 2 == 1));
-            Assert.Equal('Y', Assert.Single("xxYxx", x => x == 'Y'));
+            Assert.Equal(5,
+                Assert.Single(new int[] {0, 2, 5, 6, 8}, x => x % 2 == 1));
+            Assert.Equal('Y',
+                Assert.Single("xxYxx", x => x == 'Y'));
         }
 
         [Fact]
