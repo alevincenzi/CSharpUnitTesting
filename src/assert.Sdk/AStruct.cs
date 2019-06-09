@@ -1,4 +1,4 @@
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.assert.Sdk
 {
     struct AStruct
     {

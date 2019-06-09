@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using Xunit.Abstractions;
-using CSharpUnitTesting.sdk;
+using CSharpUnitTesting.xUnit.Sdk;
 
 namespace CSharpUnitTesting.xUnit
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.assert.Sdk
 {
     class AClass
     {

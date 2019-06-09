@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using Xunit.Sdk;
-using CSharpUnitTesting.sdk;
+using CSharpUnitTesting.assert.Sdk;
 
 namespace CSharpUnitTesting.assert
 {

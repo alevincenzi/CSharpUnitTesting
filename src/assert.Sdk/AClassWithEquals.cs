@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.assert.Sdk
 {
     class AClassWithEquals
     {

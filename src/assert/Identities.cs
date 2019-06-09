@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using CSharpUnitTesting.sdk;
+using CSharpUnitTesting.assert.Sdk;
 
 namespace CSharpUnitTesting.assert
 {

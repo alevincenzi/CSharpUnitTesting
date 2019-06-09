@@ -1,4 +1,4 @@
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.xUnit.Sdk
 {
     public class AInlineData
     {

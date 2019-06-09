@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.assert.Sdk
 {
     class AClassWithProperties : INotifyPropertyChanged
     {

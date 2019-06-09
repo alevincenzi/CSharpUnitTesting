@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Xunit.Sdk;
 
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.xUnit.Sdk
 {
     public class ACustomDataAttribute : DataAttribute
     {

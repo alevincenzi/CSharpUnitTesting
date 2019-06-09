@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace CSharpUnitTesting.sdk
+namespace CSharpUnitTesting.xUnit.Sdk
 {
     public class AClassData : IEnumerable<object[]>
     {
