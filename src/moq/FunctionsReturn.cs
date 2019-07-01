@@ -7,63 +7,63 @@ namespace CSharpUnitTesting.moq
     public class FunctionsReturn
     {
         [Fact]
-        public void ReturnValue_BaseType()
+        public void BaseType()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.ABaseFunctionWithoutParameters()).Returns(42);
-            Assert.Equal<int>(42, sut.CallABaseFunctionWithoutParameters());
+            moq.Setup(x => x.ABaseFunction()).Returns(42);
+            Assert.Equal<int>(42, sut.Call_ABaseFunction());
         }
 
         [Fact]
-        public void ReturnValue_CustomType()
+        public void CustomType()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.ACustomFunctionWithoutParameters()).Returns(new ACustomType(42));
-            Assert.Equal<int>(42, sut.CallACustomFunctionWithoutParameters().Value);
+            moq.Setup(x => x.ACustomFunction()).Returns(new ACustomType(42));
+            Assert.Equal<int>(42, sut.Call_ACustomFunction().Value);
         }
 
         [Fact]
-        public void Default_BaseType()
+        public void BaseType_Default()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            Assert.Equal<int>(0, sut.CallABaseFunctionWithoutParameters());
+            Assert.Equal<int>(0, sut.Call_ABaseFunction());
         }
 
         [Fact]
-        public void Default_CustomType()
+        public void CustomType_Default()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            Assert.Null(sut.CallACustomFunctionWithoutParameters());
+            Assert.Null(sut.Call_ACustomFunction());
         }
 
         [Fact]
-        public void Custom_BaseDefault()
+        public void BaseType_SetDefault()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
             moq.SetReturnsDefault<int>(42);
 
-            Assert.Equal<int>(42, sut.CallABaseFunctionWithoutParameters());
+            Assert.Equal<int>(42, sut.Call_ABaseFunction());
         }
 
         [Fact]
-        public void Custom_NullCustom()
+        public void CustomType_Null()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.ACustomFunctionWithoutParameters()).Returns<ACustomType>(null);
+            moq.Setup(x => x.ACustomFunction()).Returns<ACustomType>(null);
 
-            Assert.Null(sut.CallACustomFunctionWithoutParameters());
+            Assert.Null(sut.Call_ACustomFunction());
         }
 
         [Fact]
@@ -72,10 +72,10 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.ABaseFunctionWithoutParameters()).Returns(42);
+            moq.Setup(x => x.ABaseFunction()).Returns(42);
 
-            Assert.Equal<int>(42, sut.CallABaseFunctionWithoutParameters());
-            Assert.Equal<int>(42, sut.CallABaseFunctionWithoutParameters());
+            Assert.Equal<int>(42, sut.Call_ABaseFunction());
+            Assert.Equal<int>(42, sut.Call_ABaseFunction());
         }
 
         [Fact]
@@ -84,11 +84,11 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.ABaseFunctionWithoutParameters()).Returns(42);
-            Assert.Equal<int>(42, sut.CallABaseFunctionWithoutParameters());
+            moq.Setup(x => x.ABaseFunction()).Returns(42);
+            Assert.Equal<int>(42, sut.Call_ABaseFunction());
 
-            moq.Setup(x => x.ABaseFunctionWithoutParameters()).Returns(52);
-            Assert.Equal<int>(52, sut.CallABaseFunctionWithoutParameters());
+            moq.Setup(x => x.ABaseFunction()).Returns(52);
+            Assert.Equal<int>(52, sut.Call_ABaseFunction());
         }
 
         [Fact]
@@ -97,23 +97,23 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.ABaseFunctionWithoutParameters()).Returns(42);
-            Assert.Equal<int>(42, sut.CallABaseFunctionWithoutParameters());
+            moq.Setup(x => x.ABaseFunction()).Returns(42);
+            Assert.Equal<int>(42, sut.Call_ABaseFunction());
 
             moq.Reset();
-            Assert.Equal<int>(0, sut.CallABaseFunctionWithoutParameters());
+            Assert.Equal<int>(0, sut.Call_ABaseFunction());
         }
 
         [Fact]
-        public void LocalReference()
+        public void UseLocalReference()
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
             int theReturn = 52;
 
-            moq.Setup(x => x.ABaseFunctionWithoutParameters()).Returns(() => theReturn);
-            Assert.Equal<int>(52, sut.CallABaseFunctionWithoutParameters());
+            moq.Setup(x => x.ABaseFunction()).Returns(() => theReturn);
+            Assert.Equal<int>(52, sut.Call_ABaseFunction());
         }
     }
 }

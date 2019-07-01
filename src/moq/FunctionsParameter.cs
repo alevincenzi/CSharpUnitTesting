@@ -12,13 +12,13 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.AFunctionWithParameter(42)).Returns(52);
-            moq.Setup(x => x.AFunctionWithParameter(43)).Returns(53);
-            moq.Setup(x => x.AFunctionWithParameter(44)).Returns(54);
+            moq.Setup(x => x.AFunction(42)).Returns(52);
+            moq.Setup(x => x.AFunction(43)).Returns(53);
+            moq.Setup(x => x.AFunction(44)).Returns(54);
 
-            Assert.Equal<int>(52, sut.CallAFunctionWithParameter(42));
-            Assert.Equal<int>(53, sut.CallAFunctionWithParameter(43));
-            Assert.Equal<int>(54, sut.CallAFunctionWithParameter(44));
+            Assert.Equal<int>(52, sut.Call_AFunction(42));
+            Assert.Equal<int>(53, sut.Call_AFunction(43));
+            Assert.Equal<int>(54, sut.Call_AFunction(44));
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            Assert.Equal<int>(0, sut.CallAFunctionWithParameter(42));
+            Assert.Equal<int>(0, sut.Call_AFunction(42));
         }
 
         [Fact]
@@ -36,11 +36,11 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.AFunctionWithParameter(It.IsAny<int>())).Returns(42);
+            moq.Setup(x => x.AFunction(It.IsAny<int>())).Returns(42);
 
-            Assert.Equal<int>(42, sut.CallAFunctionWithParameter(0));
-            Assert.Equal<int>(42, sut.CallAFunctionWithParameter(42));
-            Assert.Equal<int>(42, sut.CallAFunctionWithParameter(52));
+            Assert.Equal<int>(42, sut.Call_AFunction(0));
+            Assert.Equal<int>(42, sut.Call_AFunction(42));
+            Assert.Equal<int>(42, sut.Call_AFunction(52));
         }
 
         [Fact]
@@ -49,9 +49,9 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.AFunctionWithParameter(It.IsAny<int>())).Returns((int x) => x + 1);
+            moq.Setup(x => x.AFunction(It.IsAny<int>())).Returns((int x) => x + 1);
 
-            Assert.Equal<int>(43, sut.CallAFunctionWithParameter(42));
+            Assert.Equal<int>(43, sut.Call_AFunction(42));
         }
     }
 }

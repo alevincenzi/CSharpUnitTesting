@@ -14,9 +14,9 @@ namespace CSharpUnitTesting.moq
 
             int outValue = 42;
 
-            moq.Setup(x => x.AFunctionWithBaseOutParameter(out outValue));
+            moq.Setup(x => x.AFunctionBaseOut(out outValue));
 
-            Assert.Equal<int>(42, sut.CallAFunctionWithBaseOutParameter());
+            Assert.Equal<int>(42, sut.Call_AFunctionBaseOut());
         }
 
         [Fact]
@@ -27,9 +27,9 @@ namespace CSharpUnitTesting.moq
 
             var outValue = new ACustomType(42);
 
-            moq.Setup(x => x.AFunctionWithCustomOutParameter(out outValue));
+            moq.Setup(x => x.AFunctionCustomOut(out outValue));
 
-            Assert.Equal<int>(42, sut.CallAFunctionWithCustomOutParameter());
+            Assert.Equal<int>(42, sut.Call_AFunctionCustomOut());
         }
 
         delegate void BaseRefCallback(ref int param);
@@ -40,10 +40,10 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.AFunctionWithBaseRefParameter(ref It.Ref<int>.IsAny))
+            moq.Setup(x => x.AFunctionBaseRef(ref It.Ref<int>.IsAny))
                .Callback(new BaseRefCallback((ref int param) => param = 42));
 
-            Assert.Equal<int>(42, sut.CallAFunctionWithBaseRefParameter());
+            Assert.Equal<int>(42, sut.Call_AFunctionBaseRef());
         }
 
         delegate void CustomRefCallback(ref ACustomType param);
@@ -54,10 +54,10 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            moq.Setup(x => x.AFunctionWithCustomRefParameter(ref It.Ref<ACustomType>.IsAny))
+            moq.Setup(x => x.AFunctionCustomRef(ref It.Ref<ACustomType>.IsAny))
                .Callback(new CustomRefCallback((ref ACustomType param) => param = new ACustomType(42)));
 
-            Assert.Equal<int>(42, sut.CallAFunctionWithCustomRefParameter());
+            Assert.Equal<int>(42, sut.Call_AFunctionCustomRef());
         }
     }
 }

@@ -6,53 +6,53 @@
 
         public AFunctionClass(AnInterface i) => this._i = i;
 
-        public int CallABaseFunctionWithoutParameters()
+        public int Call_ABaseFunction()
         {
-            return _i.ABaseFunctionWithoutParameters();
+            return _i.ABaseFunction();
         }
 
-        public ACustomType CallACustomFunctionWithoutParameters()
+        public ACustomType Call_ACustomFunction()
         {
-            return _i.ACustomFunctionWithoutParameters();
+            return _i.ACustomFunction();
         }
 
-        public int CallAFunctionWithParameter(int param)
+        public int Call_AFunction(int param)
         {
-            return _i.AFunctionWithParameter(param);
+            return _i.AFunction(param);
         }
 
-        public int CallAFunctionWithBaseOutParameter()
+        public int Call_AFunctionBaseOut()
         {
             int value = 10;
 
-            _i.AFunctionWithBaseOutParameter(out value);
+            _i.AFunctionBaseOut(out value);
 
             return value;
         }
 
-        public int CallAFunctionWithCustomOutParameter()
+        public int Call_AFunctionCustomOut()
         {
             var value = new ACustomType(10);
 
-            _i.AFunctionWithCustomOutParameter(out value);
+            _i.AFunctionCustomOut(out value);
 
             return value.Value;
         }
 
-        public int CallAFunctionWithBaseRefParameter()
+        public int Call_AFunctionBaseRef()
         {
             int value = 10;
 
-            _i.AFunctionWithBaseRefParameter(ref value);
+            _i.AFunctionBaseRef(ref value);
 
             return value;
         }
 
-        public int CallAFunctionWithCustomRefParameter()
+        public int Call_AFunctionCustomRef()
         {
             var value = new ACustomType(10);
 
-            _i.AFunctionWithCustomRefParameter(ref value);
+            _i.AFunctionCustomRef(ref value);
 
             return value.Value;
         }
