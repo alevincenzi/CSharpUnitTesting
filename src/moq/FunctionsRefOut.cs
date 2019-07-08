@@ -2,6 +2,9 @@ using Xunit;
 using Moq;
 using CSharpUnitTesting.moq.Sdk;
 
+// 03 - State based testing
+// Set up what functions returns w.r.t out and ref prarameters
+
 namespace CSharpUnitTesting.moq
 {
     public class FunctionsRefOut

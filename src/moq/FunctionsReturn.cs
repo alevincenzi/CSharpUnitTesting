@@ -2,6 +2,9 @@
 using Moq;
 using CSharpUnitTesting.moq.Sdk;
 
+// 01 - State based testing
+// Set up what functions returns
+
 namespace CSharpUnitTesting.moq
 {
     public class FunctionsReturn

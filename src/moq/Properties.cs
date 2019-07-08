@@ -3,6 +3,9 @@ using Moq;
 using CSharpUnitTesting.moq.Sdk;
 using System;
 
+// 04 - State based testing
+// Set up what properties returns
+
 namespace CSharpUnitTesting.moq
 {
     public class Properties
