@@ -3,7 +3,7 @@ using Moq;
 using CSharpUnitTesting.moq.Sdk;
 
 // 03 - Behavoir based testing
-// Verifiy that functions are called
+// Verify that functions are called
 
 namespace CSharpUnitTesting.moq
 {

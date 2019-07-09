@@ -12,7 +12,10 @@ namespace CSharpUnitTesting.moq
         [Fact]
         public void BaseType()
         {
-            var moq = new Mock<AnInterface>();
+            // Strict behaviour --> Throws errors if sut uses any
+            // function/property in the mock without a
+            // corresponding setup --> Defaults not accepted!
+            var moq = new Mock<AnInterface>(MockBehavior.Strict);
             var sut = new AFunctionClass(moq.Object);
 
             moq.Setup(x => x.ABaseFunction()).Returns(42);
@@ -33,6 +36,18 @@ namespace CSharpUnitTesting.moq
         public void BaseType_Default()
         {
             var moq = new Mock<AnInterface>();
+            var sut = new AFunctionClass(moq.Object);
+
+            Assert.Equal<int>(0, sut.Call_ABaseFunction());
+        }
+
+        [Fact]
+        public void BaseType_DefaultLoose()
+        {
+            // Loose behaviour (default), does not throw exceptions if
+            // setup of any mock function called by sut is not specified
+            // --> Default values are accepted/tolerated
+            var moq = new Mock<AnInterface>(MockBehavior.Loose);
             var sut = new AFunctionClass(moq.Object);
 
             Assert.Equal<int>(0, sut.Call_ABaseFunction());
