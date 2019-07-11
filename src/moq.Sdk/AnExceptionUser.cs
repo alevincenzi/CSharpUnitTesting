@@ -2,7 +2,7 @@
 {
     public class AnExceptionUser
     {
-     private AnInterface _interface;
+        private AnInterface _interface;
 
         public AnExceptionUser(AnInterface i)
             => _interface = i;
