@@ -15,9 +15,9 @@ namespace CSharpUnitTesting.xUnit.Sdk
         {
             _qty = qty;
             _aList = new List<object[]>(); 
-            _aList.Add(new object[] { new AMemberData("Data_00") });
-            _aList.Add(new object[] { new AMemberData("Data_01") });
-            _aList.Add(new object[] { new AMemberData("Data_02") });
+            _aList.Add(new object[] { new AClassData("Data_00") });
+            _aList.Add(new object[] { new AClassData("Data_01") });
+            _aList.Add(new object[] { new AClassData("Data_02") });
         }
 
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)

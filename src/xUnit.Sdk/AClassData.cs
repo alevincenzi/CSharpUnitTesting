@@ -1,17 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CSharpUnitTesting.xUnit.Sdk
 {
-    public class AClassData : IEnumerable<object[]>
+    public class AClassData
     {
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            yield return new object[] { new AMemberData("Data_00") };
-            yield return new object[] { new AMemberData("Data_01") };
-            yield return new object[] { new AMemberData("Data_02") };           
-        }
+        public string aProperty { get; }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public AClassData(string aValue) => aProperty = aValue;
     }
 }
