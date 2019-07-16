@@ -2,6 +2,9 @@ using Xunit;
 using Xunit.Abstractions;
 
 // 01 - Facts - Simple unit tests
+//
+// --> Tests are not executed with the same order as they are declared.
+// --> By default, the framework runs them in parallel!
 
 namespace CSharpUnitTesting.xUnit
 {
