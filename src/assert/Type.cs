@@ -1,10 +1,16 @@
 using Xunit;
 using Xunit.Sdk;
 
+// 03 - Types
+//
+// Type of reference or derived class
+
 namespace CSharpUnitTesting.assert
 {
     class ABase {};
     class ADerived : ABase {};
+
+    class ANother {};
 
     public class Type
     {
@@ -87,7 +93,7 @@ namespace CSharpUnitTesting.assert
         public void IsAssignableFrom_ThrowsException_WhenNotDerivedType()
         {
             Assert.Throws<IsAssignableFromException>(
-                () => Assert.IsAssignableFrom<ADerived>(new ABase())
+                () => Assert.IsAssignableFrom<ABase>(new ANother())
             );
         }
 

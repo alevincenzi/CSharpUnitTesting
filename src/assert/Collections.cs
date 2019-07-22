@@ -4,6 +4,8 @@ using Xunit;
 using Xunit.Sdk;
 using CSharpUnitTesting.assert.Sdk;
 
+// 12 Collections.
+
 namespace CSharpUnitTesting.assert
 {
     public class Collections
@@ -15,6 +17,9 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Collection()
         {
+            // To play assertions on each member individually
+            // Number of elements must mach the list of inspectors.
+
             Assert.Collection(new int[]{ 0, 1, 2 },
                 item => Assert.Equal(0, item),
                 item => Assert.Equal(1, item),
@@ -36,6 +41,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void All()
         {
+            // Assert same property on all elements, individually.
+
             Assert.All(new int[] {0, 2, 4, 6, 8}, x => Assert.Equal(0, x % 2));
             Assert.All(new List<int>() {0, 1, 2, 3, 4}, x => Assert.True(x < 5));
             Assert.All("xxx", x => Assert.Equal('x', x));
@@ -53,6 +60,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void All_ThrowsException_WhenAtLeastOneFails()
         {
+            // Failures on all assertion can be counted and type tested.
+
             var ex = Assert.Throws<AllException>(
                 () => Assert.All(new int[] {0, 2, 5, 6, 8}, x => Assert.Equal(0, x % 2))
             );
@@ -80,6 +89,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Single()
         {
+            // Assertion on single cardinality
+
             Assert.Single(new int[1] { 42 });
             Assert.Single(new List<int>() { 42 });
             Assert.Single("x");
@@ -96,6 +107,9 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Single_ReturnedValue()
         {
+            // Apart from testing that one value exists, 
+            // the value is also returned
+
             Assert.Equal(42,
                 Assert.Single(new int[1] { 42 }));
             Assert.Equal(42,
@@ -118,6 +132,11 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Single_WithExpectedValue()
         {
+            // Assert that only one "given equal element" is present in the collection
+
+            // To assert that the collection has n elements
+            // do equality assertion on length property instead
+
             Assert.Single(new int[] {0, 1, 2, 3, 4}, 4);
             Assert.Single("xxYxx", 'Y');
         }
@@ -136,6 +155,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Single_WithPredicate()
         {
+            // Assert that only one "given element with a property" is present in the collection
+
             Assert.Equal(5,
                 Assert.Single(new int[] {0, 2, 5, 6, 8}, x => x % 2 == 1));
             Assert.Equal('Y',
@@ -161,6 +182,9 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Empty()
         {
+            // Assert zero cardinality
+            // Remember the example with Assert.False();
+
             Assert.Empty(new int[0]);
             Assert.Empty(new List<int>());
             Assert.Empty("");
@@ -177,6 +201,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Contains()
         {
+            // Assert that element exists in the collection
+
             Assert.Contains(6, new int[] {0, 2, 4, 6, 8});
             Assert.Contains(2, new List<int>() {0, 1, 2, 3, 4});
             Assert.Contains('x', "xxx");
@@ -201,6 +227,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Contains_WithComparer()
         {
+            // Works with class capable of comparisons
+
             var collection = new List<AClass>();
             collection.Add(new AClass(1));
             collection.Add(new AClass(2));
@@ -212,6 +240,8 @@ namespace CSharpUnitTesting.assert
         [Fact]
         public void Contains_WithPredicate()
         {
+            // Works with predicates
+
             var collection = new List<AClass>();
             collection.Add(new AClass(1));
             collection.Add(new AClass(2));
@@ -265,6 +295,10 @@ namespace CSharpUnitTesting.assert
 
             Assert.DoesNotContain(collection, item => item.Value % 2 == 0);
         }
+
+        // Dictionaries are a special case of collections.
+        // Assertions are only on keys. 
+        // Value is returned.
 
         [Fact]
         public void Contains_KeyInDictionary()
@@ -350,6 +384,8 @@ namespace CSharpUnitTesting.assert
             );
         }
 
+        // Equality in collections are done element by element
+
         [Fact]
         public void Equal()
         {
@@ -379,6 +415,8 @@ namespace CSharpUnitTesting.assert
                     new int[] {0, 2, 4, 6, 8})
             );
         }
+
+        // ORDER MATTERS!!!!
 
         [Fact]
         public void Equal_ThrowsException_WhenNotSameOrder()
@@ -411,6 +449,8 @@ namespace CSharpUnitTesting.assert
             var actual = expected;
             Assert.Equal(expected, actual);
         }
+
+        // WORKS on nested colelctions too!
 
         [Fact]
         public void Equal_NestedIntArray()

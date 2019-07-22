@@ -2,6 +2,18 @@ using System.Collections.Generic;
 using Xunit;
 using Xunit.Sdk;
 
+// 11 Sets
+//
+// Mind the reading of the function:
+//
+// Assert.Subset(_abc, _ab);
+//
+// Assert that { a, b } is a subset of { a, b, c}
+//
+// Ex. for Subset
+//  First parameter is the expected superset while
+//  SUT is in the second parameter!
+
 namespace CSharpUnitTesting.assert
 {
     public class Sets
@@ -104,6 +116,5 @@ namespace CSharpUnitTesting.assert
                 () => Assert.ProperSubset<string>(_abc, _abcd)
             );
         }
-
     }
 }

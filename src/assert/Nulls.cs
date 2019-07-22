@@ -1,6 +1,10 @@
 ﻿using Xunit;
 using CSharpUnitTesting.assert.Sdk;
 
+// 02 Nulls
+//
+// Just on references 
+
 namespace CSharpUnitTesting.assert
 {
     public class Nulls
@@ -11,6 +15,12 @@ namespace CSharpUnitTesting.assert
             AClass parameter = null;
 
             Assert.Null(parameter);
+        }
+
+        [Fact]
+        public void NullKeyword()
+        {
+            Assert.Null(null);
         }
 
         [Fact]

@@ -2,6 +2,12 @@
 using Xunit.Sdk;
 using CSharpUnitTesting.assert.Sdk;
 
+// 09 Events
+//
+// Must always add the code that attach and detach an event.
+// Event can be retrieved for further testing
+// As for exceptions, mind the derived types and use RaisesAny instead
+
 namespace CSharpUnitTesting.assert
 {
     public class Events

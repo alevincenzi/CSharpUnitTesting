@@ -1,6 +1,10 @@
 ﻿using Xunit;
 using CSharpUnitTesting.assert.Sdk;
 
+// 05 Ranges
+//
+// Use comparer for non traditional types
+
 namespace CSharpUnitTesting.assert
 {
     public class Ranges

@@ -2,6 +2,15 @@
 using Xunit.Sdk;
 using CSharpUnitTesting.assert.Sdk;
 
+// 08 Exceptions
+//
+// Two levels of test
+// - The function actually throws or not the exception
+// - Save reference on exception and do further exceptions
+//
+// Note strict check on exception class hierarchy.
+// To be flexible on derived classes --> use ThrowsAny
+
 namespace CSharpUnitTesting.assert
 {
     public class Exceptions

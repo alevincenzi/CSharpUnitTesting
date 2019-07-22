@@ -2,6 +2,11 @@
 using Xunit.Sdk;
 using CSharpUnitTesting.assert.Sdk;
 
+// 10 Properties
+// 
+// Works only on classes that implements the interface INotifyPropertyChanged
+// --> Indirect assertion on events 
+
 namespace CSharpUnitTesting.assert
 {
     public class Properties

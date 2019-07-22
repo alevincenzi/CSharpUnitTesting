@@ -3,6 +3,14 @@ using Xunit;
 using Xunit.Sdk;
 using CSharpUnitTesting.assert.Sdk;
 
+// 06 Equalities
+//
+// Note that
+// - boolean and strings have they own dedicated version.
+// - Int is mapped on template equals with Int comparer
+//
+// Equal-->s<-- is obsolete. 
+
 namespace CSharpUnitTesting.assert
 {
     public class Equalities
@@ -22,6 +30,20 @@ namespace CSharpUnitTesting.assert
         // Warning xUnit2006
         // --> Use Assert.NotEqual("x", "y")
         // Assert.NotEqual<string>("x", "x");
+
+        [Fact]
+        public void Equal_Int()
+        {
+            Assert.Equal(3, 3);
+            Assert.Equal<int>(3, 3);
+        }
+
+        [Fact]
+        public void Equal_String()
+        {
+            Assert.Equal("string", "string");
+            Assert.Equal<string>("string", "string");
+        }
 
         [Fact]
         public void Equal_Double()

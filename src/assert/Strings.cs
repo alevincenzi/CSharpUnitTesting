@@ -3,6 +3,10 @@ using System.Text.RegularExpressions;
 using Xunit;
 using Xunit.Sdk;
 
+// 04 Strings
+//
+// Note that Equal with string is defined as an available assertion
+
 namespace CSharpUnitTesting.assert
 {
     public class Strings
