@@ -15,8 +15,6 @@ namespace CSharpUnitTesting.xUnit
     [Collection("Counter Collection")]
     public class Collection_Fixture_B
     {
-        private readonly ITestOutputHelper output;
-
         ACounter testCounter;
 
         public Collection_Fixture_B(ACounter counter)

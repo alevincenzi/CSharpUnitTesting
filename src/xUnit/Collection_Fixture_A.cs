@@ -27,8 +27,6 @@ namespace CSharpUnitTesting.xUnit
     [Collection("Counter Collection")]
     public class Collection_Fixture_A
     {
-        private readonly ITestOutputHelper output;
-
         ACounter testCounter;
 
         // Here we must add a parameter to receive
