@@ -42,7 +42,6 @@ namespace CSharpUnitTesting.assert
         public void Equal_String()
         {
             Assert.Equal("string", "string");
-            Assert.Equal<string>("string", "string");
         }
 
         [Fact]
