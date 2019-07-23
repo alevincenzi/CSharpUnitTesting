@@ -1,6 +1,5 @@
 ﻿using System;
 using Xunit;
-using Xunit.Abstractions;
 using CSharpUnitTesting.xUnit.Sdk;
 
 // 07 - Sharing fixture among tests in different classes

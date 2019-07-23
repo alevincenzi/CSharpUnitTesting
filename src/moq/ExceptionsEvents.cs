@@ -7,7 +7,7 @@ using CSharpUnitTesting.moq.Sdk;
 
 namespace CSharpUnitTesting.moq
 {
-    public class Exceptions
+    public class ExceptionsEvents
     {
         [Fact]
         void Exception()

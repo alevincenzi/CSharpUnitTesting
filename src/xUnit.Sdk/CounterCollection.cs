@@ -1,4 +1,3 @@
-using CSharpUnitTesting.xUnit.Sdk;
 using Xunit;
 
 // This class defines a fixture that can be
@@ -7,7 +6,7 @@ using Xunit;
 // It is possible to disable parallelization for
 // all tests in classes belonging to the same collection
 
-namespace CSharpUnitTesting.xUnit
+namespace CSharpUnitTesting.xUnit.Sdk
 {
     [CollectionDefinition("Counter Collection", DisableParallelization = true)]
     public class CounterCollection : ICollectionFixture<ACounter> { }

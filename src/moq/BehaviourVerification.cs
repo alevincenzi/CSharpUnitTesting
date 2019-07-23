@@ -2,7 +2,7 @@ using Xunit;
 using Moq;
 using CSharpUnitTesting.moq.Sdk;
 
-// 03 - Behavoir based testing
+// 03b - Behavoir based testing
 // Verify that functions are called
 
 namespace CSharpUnitTesting.moq

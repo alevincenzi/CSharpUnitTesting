@@ -2,7 +2,7 @@ using Xunit;
 using Xunit.Abstractions;
 using CSharpUnitTesting.xUnit.Sdk;
 
-// 07 - Sharing fixture among tests in the same class
+// 07a - Sharing fixture among tests in the same class
 //
 // It is possible to inject a fixture that is build only
 // once and shared for all tests in the same test class.
@@ -18,7 +18,7 @@ namespace CSharpUnitTesting.xUnit
 {
     [Trait("Category", "SharingSetup")]
     [Trait("SharingLevel", "Class")]
-    public class Class_Fixture : IClassFixture<ACounter>  
+    public class Class_Fixture : IClassFixture<ACounter>
     {
         private readonly ITestOutputHelper output;
 
