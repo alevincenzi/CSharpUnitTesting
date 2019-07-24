@@ -10,6 +10,9 @@ namespace CSharpUnitTesting.moq
 {
     public class Properties
     {
+        // Set what value properties will 
+        // return when read by the sut
+
         [Fact]
         void SetBaseValue()
         {
@@ -31,21 +34,21 @@ namespace CSharpUnitTesting.moq
         }
 
         [Fact]
-        void SetCustomValue()
+        void SetNestedProperty()
         {
             var moqType = new Mock<IPropertyType>();
             var moqValue = new Mock<AClassWithProperty>();
 
             var sut = new APropertyUser(moqType.Object, 42);
 
-            moqValue.Setup( x => x.Property).Returns(42);
+            moqValue.Setup(x => x.Property).Returns(42);
             moqType.Setup(x => x.CustomTypeProperty).Returns(moqValue.Object);
 
             Assert.True(sut.CompareCustom());
         }
 
         [Fact]
-        void SetCustomValueSimpler()
+        void SetNestedPropertySimpler()
         {
             var moqType = new Mock<IPropertyType>();
 
@@ -59,7 +62,7 @@ namespace CSharpUnitTesting.moq
         }
 
         [Fact]
-        void DefaulCustomValue()
+        void SetNestedPropertyNoSetup()
         {
             var moq = new Mock<IPropertyType>();
             var sut = new APropertyUser(moq.Object, 42);
@@ -69,8 +72,22 @@ namespace CSharpUnitTesting.moq
             );
         }
 
+        // Setup what will be the initial value of the
+        // property before the test
+
         [Fact]
-        void SetupProperty()
+        void SetupPropertyNotSetWontWork()
+        {
+            var moq = new Mock<IPropertyType>();
+            var sut = new APropertyUser(moq.Object, 0);
+
+            sut.Add(10);
+
+            Assert.Equal<int>(0, moq.Object.Counter);
+        }
+
+        [Fact]
+        void SetupPropertySetsToDefault()
         {
             var moq = new Mock<IPropertyType>();
             var sut = new APropertyUser(moq.Object, 0);
@@ -80,17 +97,6 @@ namespace CSharpUnitTesting.moq
             sut.Add(10);
 
             Assert.Equal<int>(10, moq.Object.Counter);
-        }
-
-        [Fact]
-        void SetupPropertyDefault()
-        {
-            var moq = new Mock<IPropertyType>();
-            var sut = new APropertyUser(moq.Object, 0);
-
-            sut.Add(10);
-
-            Assert.Equal<int>(0, moq.Object.Counter);
         }
 
         [Fact]

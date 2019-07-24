@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 using Moq;
 using CSharpUnitTesting.moq.Sdk;
 
@@ -30,7 +31,10 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
-            Assert.Equal<int>(0, sut.Call_AFunction(42));
+            moq.Setup(x => x.AFunction(42)).Returns(52);
+
+            Assert.Equal<int>(52, sut.Call_AFunction(42));
+            Assert.Equal<int>(0, sut.Call_AFunction(43));
         }
 
         [Fact]
@@ -44,6 +48,34 @@ namespace CSharpUnitTesting.moq
             Assert.Equal<int>(42, sut.Call_AFunction(0));
             Assert.Equal<int>(42, sut.Call_AFunction(42));
             Assert.Equal<int>(42, sut.Call_AFunction(52));
+        }
+
+        [Fact]
+        public void InRange()
+        {
+            var moq = new Mock<AnInterface>();
+            var sut = new AFunctionClass(moq.Object);
+
+            moq.Setup(x => x.AFunction(It.IsInRange(10, 20, Range.Inclusive))).Returns(42);
+
+            Assert.Equal<int>(42, sut.Call_AFunction(10));
+            Assert.Equal<int>(42, sut.Call_AFunction(11));
+            Assert.Equal<int>( 0, sut.Call_AFunction(21));
+        }
+
+        [Fact]
+        public void In()
+        {
+            var moq = new Mock<AnInterface>();
+            var sut = new AFunctionClass(moq.Object);
+
+            var values = new int[] { 10, 11, 12 };
+
+            moq.Setup(x => x.AFunction(It.IsIn<int>(values))).Returns(42);
+
+            Assert.Equal<int>(42, sut.Call_AFunction(10));
+            Assert.Equal<int>(42, sut.Call_AFunction(11));
+            Assert.Equal<int>( 0, sut.Call_AFunction(21));
         }
 
         [Fact]

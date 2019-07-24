@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 using Moq;
 using CSharpUnitTesting.moq.Sdk;
@@ -80,6 +81,47 @@ namespace CSharpUnitTesting.moq
             moq.Verify(x => x.AFunction(44));
             moq.Verify(x => x.AFunction(43));
             moq.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        void VerifyAll_Called()
+        {
+            var moq = new Mock<AnInterface>();
+            var sut = new AnInterfaceUser(moq.Object);
+
+            moq.Setup(x => x.AFunction(10)).Returns(42);
+
+            Assert.Equal(42, sut.CallAFunction(10));
+
+            moq.VerifyAll();
+        }
+
+        [Fact]
+        void VerifyAll_NotCalled()
+        {
+            var moq = new Mock<AnInterface>();
+            var sut = new AnInterfaceUser(moq.Object);
+
+            moq.Setup(x => x.AFunction(10)).Returns(42);
+
+            Assert.Equal(0, sut.CallAFunction(0));
+
+            // This asserts that all interactions
+            // with the moq have been done following
+            // the setup. Fails if the setup has not
+            // been "exploited" during the test.
+            Assert.ThrowsAny<Exception>(() => moq.VerifyAll());
+        }
+
+        [Fact]
+        void VerifyAll_WithoutSetup()
+        {
+            var moq = new Mock<AnInterface>();
+            var sut = new AnInterfaceUser(moq.Object);
+
+            Assert.Equal(0, sut.CallAFunction(10));
+
+            moq.VerifyAll();
         }
 
         [Fact]

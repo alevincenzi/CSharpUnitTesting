@@ -43,6 +43,8 @@ namespace CSharpUnitTesting.moq
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
 
+            Assert.Equal<int>(10, sut.Call_AFunctionBaseRef());
+
             moq.Setup(x => x.AFunctionBaseRef(ref It.Ref<int>.IsAny))
                .Callback(new BaseRefCallback((ref int param) => param = 42));
 
@@ -56,6 +58,8 @@ namespace CSharpUnitTesting.moq
         {
             var moq = new Mock<AnInterface>();
             var sut = new AFunctionClass(moq.Object);
+
+            Assert.Equal<int>(10, sut.Call_AFunctionCustomRef());
 
             moq.Setup(x => x.AFunctionCustomRef(ref It.Ref<ACustomType>.IsAny))
                .Callback(new CustomRefCallback((ref ACustomType param) => param = new ACustomType(42)));

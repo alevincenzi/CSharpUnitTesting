@@ -11,7 +11,12 @@
             => _interface.ABaseFunction();
 
         public int CallAFunction(int value)
-            => _interface.AFunction(value);
+        {
+            if (value != 0)
+                return _interface.AFunction(value);
+            else
+                return 0;
+        }
 
         public int CallAFunctionTwiceWithSame(int value)
         {
